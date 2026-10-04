@@ -16,9 +16,8 @@ The data is not included in this repo. Download it from the [M5 Forecasting - Ac
 
 ## Approach
 
-TODO: one short paragraph per stage as each is completed.
-
-1. Reshape and join sales, calendar, and prices
+0. **Reshape (done).** The raw sales file has one row per product per store and one column per day. I filtered it to the 3 Texas stores (9,147 product-store rows) and reshaped it to one row per product, store, and day: 17,754,327 rows. Converting the ID columns and day labels to `category` and sales to `int16` cut memory from 525 MB to 213 MB (59%), and a total-units check (19,228,405 before and after) confirmed no sales were lost. The result is saved as Parquet. Notebook: `notebooks/01_reshape.ipynb`.
+1. Join calendar and prices, and explore with SQL in DuckDB
 2. Data quality and exploratory analysis
 3. Forecasting: simple baselines, ETS/SARIMA, LightGBM
 4. Forecast error to inventory cost, with sensitivity analysis
@@ -32,8 +31,28 @@ TODO: list the assumptions and their ranges.
 
 ## How to run
 
-TODO: setup steps and run order.
+Tested on macOS with Python 3.12.
+
+```bash
+git clone https://github.com/rajisworking16/walmart-demand-forecasting.git
+cd walmart-demand-forecasting
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+Download the M5 files from Kaggle and unzip them into `~/data/walmart-data/raw/`. Data paths are set in `src/config.py`; change `DATA_DIR` there if your data lives somewhere else.
+
+Run the notebooks in order:
+
+1. `notebooks/01_reshape.ipynb`
 
 ## Repo structure
 
-TODO
+```
+notebooks/        one notebook per stage
+src/config.py     data paths, imported by every notebook
+sql/              DuckDB queries
+.vscode/          editor settings
+requirements.txt  pinned package versions
+```
