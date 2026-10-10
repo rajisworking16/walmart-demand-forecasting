@@ -6,7 +6,7 @@ A demand planning manager must decide where additional forecasting effort is wor
 
 ## Key findings
 
-- **LightGBM beats the best simple method, but modestly.** On a 13-week holdout across 9,147 product-store series, weighted MAPE fell from 0.363 (4-week moving average) to 0.341, a 6.1% improvement. RMSE fell 8.7%, so the gain is largest on big misses.
+- **LightGBM beats the best simple method, but modestly.** On a 13-week holdout across 9,147 product-store series, weighted MAPE fell from 0.363 (4-week moving average) to 0.342, a 5.8% improvement. RMSE fell 8.5%, so the gain is largest on big misses.
 - **The gain holds up in dollars.** Converted to overstock and stockout costs, LightGBM saved 6.4% to 7.4% ($9,609 to $26,313 over 13 weeks) under all four cost scenarios tested. It passed in every demand pattern, store, category, and department.
 - **The savings come from carrying less stock.** 88% to 94% of the savings are lower overstock cost. Tighter errors mean less safety stock for the same stockout rate (7.9% vs 8.0%).
 - **The value is concentrated.** LightGBM saves money under every scenario for only 42.7% of series, and the top 10% of series produce 90% to 107% of net savings. A planner gets most of the benefit by focusing attention on a small set of items.
@@ -45,7 +45,7 @@ Flagged 35 item-store combinations priced under $0.10 (likely a pricing data qui
 
 | Method | WMAPE | MAE | RMSE | Bias |
 |---|---|---|---|---|
-| LightGBM | 0.341 | 2.955 | 6.226 | -1.8% |
+| LightGBM | 0.342 | 2.955 | 6.237 | -1.9% |
 | 4-week average | 0.363 | 3.144 | 6.818 | -0.7% |
 | 13-week average | 0.402 | 3.483 | 7.821 | -3.6% |
 | Naive | 0.402 | 3.475 | 7.037 | -0.3% |
