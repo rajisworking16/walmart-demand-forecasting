@@ -54,7 +54,9 @@ Recent sales history drives the model: the 4-week average, last week's sales, an
 
 **4. Forecast error to inventory cost** (`05_inventory_cost.ipynb`). Each week the planner orders the forecast plus safety stock. Safety stock is z × σ, where σ is each method's own error spread per series on the validation weeks and z comes from the newsvendor critical ratio. Overstock and stockout units are priced at each item's shelf price.
 
-**5. Dashboard.** Power BI. [PLACEHOLDER: link or screenshot once built]
+   **5. Dashboard.** Power BI, one page on a star schema: lookup tables for scenario, store, category, department, pattern and method filter the fact tables, so every slicer reaches every visual. Totals match notebook 05 to the dollar.
+
+   ![Power BI overview](reports/figures/dashboard_overview.png)
 
 ## Cost assumptions
 
