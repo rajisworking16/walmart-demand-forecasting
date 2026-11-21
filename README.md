@@ -7,7 +7,7 @@ A demand planning manager must decide where additional forecasting effort is wor
 ## Key findings
 
 - **LightGBM beats the best simple method, but modestly.** On a 13-week holdout across 9,147 product-store series, weighted MAPE fell from 0.363 (4-week moving average) to 0.342, a 5.8% improvement. RMSE fell 8.5%, so the gain is largest on big misses.
-- **The gain holds up in dollars.** Converted to overstock and stockout costs, LightGBM saved 6.4% to 7.4% ($9,609 to $26,313 over 13 weeks) under all four cost scenarios tested. It passed in every demand pattern, store, category, and department.
+- **The gain holds up in dollars.** Converted to overstock and stockout costs, LightGBM saved 6.4% to 7.4% ($9,609 to $26,313 over 13 weeks) under all four cost scenarios tested. It passed in every demand pattern, store, category, and department. That is at segment level. At individual series level, LightGBM saved money in all four scenarios for 42.7% of series. The top 10% of series produce about 90% or more of the net savings, and the top 20% produce over 100%, meaning the remaining series net to slightly negative. The value is concentrated; that is the project's main finding.
 - **The savings come from carrying less stock.** 88% to 94% of the savings are lower overstock cost. Tighter errors mean less safety stock for the same stockout rate (7.9% vs 8.0%).
 - **The value is concentrated.** LightGBM saves money under every scenario for only 42.7% of series, and the top 10% of series produce 90% to 107% of net savings. A planner gets most of the benefit by focusing attention on a small set of items.
 - **Where it pays and where simple is enough.** FOODS saves 8.0% to 10.1% (FOODS_3 up to 11.8%); smooth series produce about half the dollar savings because they carry 73% of volume. HOBBIES_2 saves $13 to $140 in 13 weeks: the 4-week average is enough there.
@@ -74,6 +74,8 @@ M5 has no holding, stockout, or margin data. All dollar figures come from the st
 - Cost rates are assumptions, so the relative pattern matters more than the dollar totals.
 - Order quantities are continuous; no case packs, lead times, or shelf limits.
 - The test period is 13 weeks.
+- `event_days` counts only `event_name_1`. A second event on the same day (`event_name_2`) is in the daily table but invisible to the model.
+- There is no automated test suite. Validation is assert checks inside the notebooks: row, series, and unit totals at every stage, plus join-key uniqueness before the join in `02_join`.
 - LightGBM's validation errors, used for its safety stock, come from the same weeks used for early stopping. This slightly understates its safety stock and works against it.
 
 ## How to run

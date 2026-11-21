@@ -1,13 +1,16 @@
+-- Scratch exploration file, written before src/config.py existed. Kept for history; use src/config.py paths for all real work.
+-- <YOUR_DATA_DIR> is a placeholder: replace it with your data folder (src/config.py uses ~/data/walmart-data).
+
 CREATE OR REPLACE VIEW sales_raw AS
-select * from read_csv('/Users/rajkandula/data/walmart-data/raw/sales_train_evaluation.csv');
+select * from read_csv('<YOUR_DATA_DIR>/raw/sales_train_evaluation.csv');
 
 
 CREATE OR REPLACE VIEW calendar_raw AS
-select * from read_csv('/Users/rajkandula/data/walmart-data/raw/calendar.csv');
+select * from read_csv('<YOUR_DATA_DIR>/raw/calendar.csv');
 
 
 CREATE OR REPLACE VIEW sell_prices_raw AS
-select * from read_csv('/Users/rajkandula/data/walmart-data/raw/sell_prices.csv');
+select * from read_csv('<YOUR_DATA_DIR>/raw/sell_prices.csv');
 
 -------------------------1 Column types
 DESCRIBE sell_prices_raw;
