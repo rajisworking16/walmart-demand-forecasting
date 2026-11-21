@@ -74,6 +74,8 @@ M5 has no holding, stockout, or margin data. All dollar figures come from the st
 - Cost rates are assumptions, so the relative pattern matters more than the dollar totals.
 - Order quantities are continuous; no case packs, lead times, or shelf limits.
 - The test period is 13 weeks.
+- `event_days` counts only `event_name_1`. A second event on the same day (`event_name_2`) is in the daily table but invisible to the model.
+- There is no automated test suite. Validation is assert checks inside the notebooks: row, series, and unit totals at every stage, plus join-key uniqueness before the join in `02_join`.
 - LightGBM's validation errors, used for its safety stock, come from the same weeks used for early stopping. This slightly understates its safety stock and works against it.
 
 ## How to run
